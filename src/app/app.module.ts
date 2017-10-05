@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ControlsComponent } from './controls/controls.component';
+import { QueueComponent } from './queue/queue.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ControlsComponent
+    ControlsComponent,
+    QueueComponent
   ],
   imports: [
     BrowserModule

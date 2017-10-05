@@ -3,9 +3,17 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+var users = require('./routes/users');
 var app = express();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
+var mongoose = require('mongoose');
+
+mongoose.Promise = global.Promise;
+
+mongoose.connect('mongodb://localhost:27017/lil-robot')
+  .then(function() { console.log('connection successful') })
+  .catch(function(err) { console.error(err) });
 
 http.listen(4000);
 
@@ -21,6 +29,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended':'false'}));
 app.use(express.static(path.join(__dirname, 'dist')));
+
+app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -39,5 +49,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.socketServer = io;
 
 module.exports = app;
