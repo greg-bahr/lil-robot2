@@ -3,8 +3,19 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
-
 var app = express();
+var http = require('http').createServer(app);
+var io = require('socket.io')(http);
+
+http.listen(4000);
+
+io.on('connection', function (socket) {
+  console.log("Client connected.");
+
+  socket.on('disconnect', function() {
+    console.log("Client disconnected.")
+  });
+});
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
