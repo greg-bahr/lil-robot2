@@ -7,6 +7,6 @@ import * as io from 'socket.io-client';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'robot v2';
   socket = io('http://localhost:4000');
 }

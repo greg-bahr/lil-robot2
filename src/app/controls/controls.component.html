@@ -1,0 +1,12 @@
+<div class="controls-container">
+  <div class="button-container">
+    <div class="keyrow">
+      <div class="button" [ngClass]="{ 'active' : currPressed === 'ArrowUp' }" id="forward">&#8593;</div>
+    </div>
+    <div class="keyrow">
+      <div class="button" [ngClass]="{ 'active' : currPressed === 'ArrowLeft' }" id="left">&#8592;</div>
+      <div class="button" [ngClass]="{ 'active' : currPressed === 'ArrowDown' } "id="back">&#8595;</div>
+      <div class="button" [ngClass]="{ 'active' : currPressed === 'ArrowRight' } "id="right">&#8594;</div>
+    </div>
+  </div>
+</div>
