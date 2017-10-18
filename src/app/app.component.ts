@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import * as io from 'socket.io-client';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +7,4 @@ import * as io from 'socket.io-client';
 })
 export class AppComponent {
   title = 'robot v2';
-  socket = io('http://localhost:4000');
 }

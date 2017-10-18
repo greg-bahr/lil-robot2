@@ -11,7 +11,9 @@ var mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost:27017/lil-robot')
+mongoose.connect('mongodb://localhost:27017/lil-robot', {
+    useMongoClient: true
+  })
   .then(function() { console.log('connection successful') })
   .catch(function(err) { console.error(err) });
 
@@ -49,7 +51,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-app.socketServer = io;
 
 module.exports = app;
