@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 export class QueueService {
   constructor(private socket: Socket) { }
 
-  receiveCurrentQueue() {
+  receiveQueue() {
     return this.socket
       .fromEvent<any>('sendQueue')
       .map(data => data.queue);

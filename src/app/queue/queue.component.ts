@@ -1,15 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { QueueService } from "./queue.service";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-queue',
   templateUrl: './queue.component.html',
-  styleUrls: ['./queue.component.scss']
+  styleUrls: ['./queue.component.scss'],
+  providers: [QueueService]
 })
-export class QueueComponent implements OnInit {
+export class QueueComponent {
 
-  constructor() { }
+  queue: object[];
+  queueSubscription: Subscription;
 
-  ngOnInit() {
+  constructor(queueService: QueueService) {
+    this.queueSubscription = queueService.receiveQueue().subscribe(
+      value => this.queue = value,
+      error => console.log(error)
+    );
   }
 
 }
