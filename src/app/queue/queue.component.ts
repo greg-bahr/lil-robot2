@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { QueueService } from "./queue.service";
 import {Subscription} from "rxjs/Subscription";
 
@@ -8,7 +8,7 @@ import {Subscription} from "rxjs/Subscription";
   styleUrls: ['./queue.component.scss'],
   providers: [QueueService]
 })
-export class QueueComponent {
+export class QueueComponent implements OnDestroy {
 
   queue: object[];
   queueSubscription: Subscription;
@@ -20,4 +20,7 @@ export class QueueComponent {
     );
   }
 
+  ngOnDestroy() {
+    this.queueSubscription.unsubscribe();
+  }
 }

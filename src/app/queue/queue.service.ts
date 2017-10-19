@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class QueueService {
-  constructor(private socket: Socket) { }
+  constructor(private socket: Socket) {}
 
   receiveQueue() {
     return this.socket

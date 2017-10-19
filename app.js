@@ -19,8 +19,12 @@ mongoose.connect('mongodb://localhost:27017/lil-robot', {
 
 http.listen(4000);
 
+queue = [];
+
 io.on('connection', function (socket) {
   console.log("Client connected.");
+  socket.emit('sendQueue', queue);
+
 
   socket.on('disconnect', function() {
     console.log("Client disconnected.")
