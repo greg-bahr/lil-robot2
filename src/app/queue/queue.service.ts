@@ -4,11 +4,14 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class QueueService {
-  constructor(private socket: Socket) {}
+  constructor(private socket: Socket) {
+    socket.on('sendQueue', (data) => {
+      console.log(data);
+    });
+  }
 
   receiveQueue() {
     return this.socket
-      .fromEvent<any>('sendQueue')
-      .map(data => data.queue);
+      .fromEvent<any>('sendQueue');
   }
 }

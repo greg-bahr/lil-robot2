@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 import { AppComponent } from './app.component';
 import { ControlsComponent } from './controls/controls.component';
 import { QueueComponent } from './queue/queue.component';
 
-const config: SocketIoConfig = { url: 'https://127.0.0.1:4000', options: {} };
+const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
 
 @NgModule({
   declarations: [

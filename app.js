@@ -8,6 +8,7 @@ var app = express();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 var mongoose = require('mongoose');
+var generateName = require('sillyname');
 
 mongoose.Promise = global.Promise;
 
@@ -17,17 +18,24 @@ mongoose.connect('mongodb://localhost:27017/lil-robot', {
   .then(function() { console.log('connection successful') })
   .catch(function(err) { console.error(err) });
 
-http.listen(4000);
+http.listen(3001);
 
-queue = [];
+var queue = [];
 
 io.on('connection', function (socket) {
   console.log("Client connected.");
+
+  queue.push({
+    name: generateName(),
+    id: socket.id
+  });
   socket.emit('sendQueue', queue);
 
-
   socket.on('disconnect', function() {
-    console.log("Client disconnected.")
+    queue = queue.filter(function (t) {
+      return t.id !== socket.id });
+    socket.emit('sendQueue', queue);
+    console.log("Client disconnected.");
   });
 });
 
