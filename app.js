@@ -29,12 +29,12 @@ io.on('connection', function (socket) {
     name: generateName(),
     id: socket.id
   });
-  socket.emit('sendQueue', queue);
+  io.sockets.emit('sendQueue', queue);
 
   socket.on('disconnect', function() {
     queue = queue.filter(function (t) {
       return t.id !== socket.id });
-    socket.emit('sendQueue', queue);
+    io.sockets.emit('sendQueue', queue);
     console.log("Client disconnected.");
   });
 });
