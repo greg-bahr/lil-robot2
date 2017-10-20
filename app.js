@@ -21,6 +21,7 @@ mongoose.connect('mongodb://localhost:27017/lil-robot', {
 http.listen(3001);
 
 var queue = [];
+var timer = 15;
 
 io.on('connection', function (socket) {
   console.log("Client connected.");
@@ -30,6 +31,7 @@ io.on('connection', function (socket) {
     id: socket.id
   });
   io.sockets.emit('sendQueue', queue);
+  io.sockets.emit('timer', timer);
 
   socket.on('disconnect', function() {
     queue = queue.filter(function (t) {
@@ -38,6 +40,17 @@ io.on('connection', function (socket) {
     console.log("Client disconnected.");
   });
 });
+
+setInterval(function () {
+  queue.push(queue.shift());
+  timer = 15;
+  io.sockets.emit('sendQueue', queue);
+  io.sockets.emit('timer', timer);
+}, 15000);
+
+setInterval(function () {
+  timer--;
+}, 1000);
 
 app.use(logger('dev'));
 app.use(bodyParser.json());

@@ -5,6 +5,7 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { AppComponent } from './app.component';
 import { ControlsComponent } from './controls/controls.component';
 import { QueueComponent } from './queue/queue.component';
+import { PlayerComponent } from './player/player.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
 
@@ -12,7 +13,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
   declarations: [
     AppComponent,
     ControlsComponent,
-    QueueComponent
+    QueueComponent,
+    PlayerComponent
   ],
   imports: [
     BrowserModule,

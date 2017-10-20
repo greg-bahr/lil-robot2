@@ -4,7 +4,12 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class QueueService {
-  constructor(private socket: Socket) {}
+
+  private currentTimer: number;
+
+  constructor(private socket: Socket) {
+    socket.on('timer', data => this.currentTimer = data);
+  }
 
   receiveQueue() {
     return this.socket

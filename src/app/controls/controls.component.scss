@@ -1,8 +1,9 @@
 .controls-container {
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   align-items: center;
   margin-top: 100px;
+  float: left;
 
   .button-container {
     display: inline-flex;
