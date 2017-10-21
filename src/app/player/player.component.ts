@@ -1,5 +1,4 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
-declare var JSMpeg: any;
 
 @Component({
   selector: 'app-player',
