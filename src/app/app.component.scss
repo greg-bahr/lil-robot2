@@ -1,0 +1,9 @@
+.queue-player-container {
+  display: flex;
+  flex-direction: row;
+}
+
+app-player {
+  display: inline-flex;
+  margin-left: auto;
+}

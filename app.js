@@ -77,4 +77,13 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+const exec = require('child_process').exec;
+exec('sh ./stream-relay/runffmpeg.sh', function (error, stdout, stderr) {
+  if(error) {
+    console.log(error)
+  }
+  console.log(stdout);
+  console.log(stderr);
+});
+
 module.exports = app;
