@@ -33,6 +33,22 @@ io.on('connection', function (socket) {
   io.sockets.emit('sendQueue', queue);
   io.sockets.emit('timer', timer);
 
+  socket.on('buttonPressed', function(button) {
+    switch(button) {
+      case "ArrowUp":
+        break;
+      case "ArrowLeft":
+        break;
+      case "ArrowDown":
+        break;
+      case "ArrowRight":
+        break;
+      default:
+        // stop robot
+        break;
+    }
+  });
+
   socket.on('disconnect', function() {
     queue = queue.filter(function (t) {
       return t.id !== socket.id });

@@ -1,13 +1,17 @@
-import {Component, HostListener} from '@angular/core';
+import {Component, HostListener, OnDestroy} from '@angular/core';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-controls',
   templateUrl: './controls.component.html',
   styleUrls: ['./controls.component.scss']
 })
-export class ControlsComponent {
+export class ControlsComponent implements OnDestroy {
 
   public currPressed = "None";
+  private emitPressedInterval = setInterval(this.emitPressed, 250);
+
+  constructor(private socket: Socket) {}
 
   @HostListener('window:keydown', ['$event'])
   keyDown(event: KeyboardEvent): void {
@@ -34,5 +38,13 @@ export class ControlsComponent {
   @HostListener('window:mouseup')
   mouseUp() {
     this.currPressed = "None";
+  }
+
+  emitPressed() {
+    this.socket.emit('buttonPressed', this.currPressed);
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.emitPressedInterval);
   }
 }
