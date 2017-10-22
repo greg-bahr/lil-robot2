@@ -1,10 +1,10 @@
 <div class="button-container noselect">
   <div class="keyrow">
-    <div class="button" [ngClass]="{ 'active' : currPressed === 'ArrowUp' }" id="forward">&#8593;</div>
+    <div class="button" [ngClass]="{ 'active' : currPressed === 'ArrowUp' }" (mousedown)="mouseDown('ArrowUp')">&#8593;</div>
   </div>
   <div id="bottom-row" class="keyrow">
-    <div class="button" [ngClass]="{ 'active' : currPressed === 'ArrowLeft' }" id="left">&#8592;</div>
-    <div class="button" [ngClass]="{ 'active' : currPressed === 'ArrowDown' } "id="back">&#8595;</div>
-    <div class="button" [ngClass]="{ 'active' : currPressed === 'ArrowRight' } "id="right">&#8594;</div>
+    <div class="button" [ngClass]="{ 'active' : currPressed === 'ArrowLeft' }" (mousedown)="mouseDown('ArrowLeft')">&#8592;</div>
+    <div class="button" [ngClass]="{ 'active' : currPressed === 'ArrowDown' } " (mousedown)="mouseDown('ArrowDown')">&#8595;</div>
+    <div class="button" [ngClass]="{ 'active' : currPressed === 'ArrowRight' }" (mousedown)="mouseDown('ArrowRight')">&#8594;</div>
   </div>
 </div>

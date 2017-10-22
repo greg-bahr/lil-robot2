@@ -7,7 +7,7 @@ import {Component, HostListener} from '@angular/core';
 })
 export class ControlsComponent {
 
-  public currPressed = 'None';
+  public currPressed = "None";
 
   @HostListener('window:keydown', ['$event'])
   keyDown(event: KeyboardEvent): void {
@@ -23,5 +23,16 @@ export class ControlsComponent {
     if (event.key === this.currPressed) {
       this.currPressed = "None";
     }
+  }
+
+  mouseDown(button) {
+    if (this.currPressed === "None") {
+      this.currPressed = button;
+    }
+  }
+
+  @HostListener('window:mouseup')
+  mouseUp() {
+    this.currPressed = "None";
   }
 }
