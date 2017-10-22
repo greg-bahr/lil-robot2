@@ -11,6 +11,6 @@ export class PlayerComponent implements AfterViewInit {
   @ViewChild('player') canvas;
 
   ngAfterViewInit() {
-    this.player = new JSMpeg.Player('ws://127.0.0.1:3002', { canvas: this.canvas.nativeElement });
+    this.player = new JSMpeg.Player('ws://' + window.location.hostname + ':3002', { canvas: this.canvas.nativeElement });
   }
 }

@@ -1,9 +1,30 @@
-.queue-player-container {
+.content-container {
   display: flex;
   flex-direction: row;
 }
 
+.player-controls-container {
+  display: inline-flex;
+  flex-direction: row;
+  margin-left: auto;
+}
+
 app-player {
   display: inline-flex;
+  margin-left: 0;
+}
+
+app-queue {
+  display: inline-flex;
+  float: left;
+  background: #cccccc;
+  border-radius: 8px;
+  min-width: 15rem;
+}
+
+controls {
+  display: inline-flex;
   margin-left: auto;
+  margin-top: auto;
+  padding-bottom: 0;
 }

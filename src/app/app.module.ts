@@ -7,7 +7,7 @@ import { ControlsComponent } from './controls/controls.component';
 import { QueueComponent } from './queue/queue.component';
 import { PlayerComponent } from './player/player.component';
 
-const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
+const config: SocketIoConfig = { url: 'http://' + window.location.hostname + ':3001', options: {} };
 
 @NgModule({
   declarations: [
