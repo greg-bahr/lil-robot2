@@ -24,18 +24,20 @@ io.on('connection', function (socket) {
   io.sockets.emit('timer', timer);
 
   socket.on('buttonPressed', function(button) {
-    switch(button) {
-      case "ArrowUp":
-        break;
-      case "ArrowLeft":
-        break;
-      case "ArrowDown":
-        break;
-      case "ArrowRight":
-        break;
-      default:
-        // stop robot
-        break;
+    if(queue[0].id === socket.id) {
+      switch (button) {
+        case "ArrowUp":
+          break;
+        case "ArrowLeft":
+          break;
+        case "ArrowDown":
+          break;
+        case "ArrowRight":
+          break;
+        default:
+          // stop robot
+          break;
+      }
     }
   });
 
