@@ -1,17 +1,23 @@
-import {Component, HostListener, OnDestroy} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import { Socket } from 'ngx-socket-io';
+import {ControlsService} from "./controls.service";
 
 @Component({
   selector: 'app-controls',
   templateUrl: './controls.component.html',
-  styleUrls: ['./controls.component.scss']
+  styleUrls: ['./controls.component.scss'],
+  providers: [ControlsService]
 })
-export class ControlsComponent implements OnDestroy {
+export class ControlsComponent implements OnDestroy, OnInit {
 
   public currPressed = "None";
-  private emitPressedInterval = setInterval(this.emitPressed, 250);
+  private emitPressedInterval: any;
 
-  constructor(private socket: Socket) {}
+  constructor(private controlsService: ControlsService) {}
+
+  ngOnInit() {
+    this.emitPressedInterval = setInterval(this.emitPressed(), 250);
+  }
 
   @HostListener('window:keydown', ['$event'])
   keyDown(event: KeyboardEvent): void {
@@ -41,7 +47,7 @@ export class ControlsComponent implements OnDestroy {
   }
 
   emitPressed() {
-    this.socket.emit('buttonPressed', this.currPressed);
+    this.controlsService.emitPressed(this.currPressed);
   }
 
   ngOnDestroy() {

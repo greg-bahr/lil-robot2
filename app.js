@@ -3,20 +3,10 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
-var users = require('./routes/users');
 var app = express();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
-var mongoose = require('mongoose');
 var generateName = require('sillyname');
-
-mongoose.Promise = global.Promise;
-
-mongoose.connect('mongodb://localhost:27017/lil-robot', {
-    useMongoClient: true
-  })
-  .then(function() { console.log('connection successful') })
-  .catch(function(err) { console.error(err) });
 
 http.listen(3001);
 
@@ -73,8 +63,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended':'false'}));
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.use('/users', users);
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -93,13 +81,13 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-/*const exec = require('child_process').exec;
+const exec = require('child_process').exec;
 exec('sh ./stream-relay/runffmpeg.sh', function (error, stdout, stderr) {
   if(error) {
     console.log(error)
   }
   console.log(stdout);
   console.log(stderr);
-});*/
+});
 
 module.exports = app;
