@@ -1,7 +1,7 @@
 import {Component, HostListener} from '@angular/core';
 
 @Component({
-  selector: 'controls',
+  selector: 'app-controls',
   templateUrl: './controls.component.html',
   styleUrls: ['./controls.component.scss']
 })
@@ -12,11 +12,16 @@ export class ControlsComponent {
   @HostListener('window:keydown', ['$event'])
   keyDown(event: KeyboardEvent): void {
     event.stopPropagation();
-    this.currPressed = event.key;
+    event.preventDefault();
+    if (this.currPressed === "None") {
+      this.currPressed = event.key;
+    }
   }
 
-  @HostListener('window:keyup')
-  keyUp(): void {
-    this.currPressed = 'None';
+  @HostListener('window:keyup', ['$event'])
+  keyUp(event: KeyboardEvent): void {
+    if (event.key === this.currPressed) {
+      this.currPressed = "None";
+    }
   }
 }
