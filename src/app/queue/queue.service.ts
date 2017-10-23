@@ -5,10 +5,15 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class QueueService {
 
-  private currentTimer: number;
+  public currentTimer: number;
+  private timerInterval: any;
 
   constructor(private socket: Socket) {
-    socket.on('timer', data => this.currentTimer = data);
+    socket.on('timer', (data) => {
+      this.currentTimer = data;
+      clearInterval(this.timerInterval);
+      this.timerInterval = setInterval(() => this.currentTimer--, 1000);
+    });
   }
 
   receiveQueue() {

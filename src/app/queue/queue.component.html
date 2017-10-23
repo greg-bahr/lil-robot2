@@ -1,5 +1,6 @@
 <div>
-  <p>Queue:</p>
+  <h2>Queue:</h2>
+  <h3>Timer: {{ queueService.currentTimer }}s</h3>
   <ol>
     <li *ngFor="let person of queue">{{ person.name }}</li>
   </ol>

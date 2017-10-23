@@ -12,8 +12,10 @@ export class QueueComponent implements OnDestroy {
 
   queue: object[];
   queueSubscription: Subscription;
+  queueService: QueueService;
 
   constructor(queueService: QueueService) {
+    this.queueService = queueService;
     this.queueSubscription = queueService.receiveQueue().subscribe(
       value => this.queue = value,
       error => console.log(error)
