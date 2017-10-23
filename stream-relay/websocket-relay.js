@@ -27,7 +27,7 @@ socketServer.connectionCount = 0;
 socketServer.on('connection', function(socket, upgradeReq) {
 	socketServer.connectionCount++;
 	console.log(
-		'New WebSocket Connection: ', 
+		'New WebSocket Connection: ',
 		(upgradeReq || socket.upgradeReq).socket.remoteAddress,
 		(upgradeReq || socket.upgradeReq).headers['user-agent'],
 		'('+socketServer.connectionCount+' total)'
@@ -61,7 +61,7 @@ var streamServer = http.createServer( function(request, response) {
 
 	response.connection.setTimeout(0);
 	console.log(
-		'Stream Connected: ' + 
+		'Stream Connected: ' +
 		request.socket.remoteAddress + ':' +
 		request.socket.remotePort
 	);
@@ -87,3 +87,12 @@ var streamServer = http.createServer( function(request, response) {
 
 console.log('Listening for incomming MPEG-TS Stream on http://127.0.0.1:'+STREAM_PORT+'/<secret>');
 console.log('Awaiting WebSocket connections on ws://127.0.0.1:'+WEBSOCKET_PORT+'/');
+
+const exec = require('child_process').exec;
+exec('sh ./runffmpeg.sh', function (error, stdout, stderr) {
+  if(error) {
+    console.log(error)
+  }
+  console.log(stdout);
+  console.log(stderr);
+});

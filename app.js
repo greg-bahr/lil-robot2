@@ -27,7 +27,7 @@ io.on('connection', function (socket) {
   io.sockets.emit('timer', timer);
 
   socket.on('buttonPressed', function(button) {
-    if(queue[0].id === socket.id) {
+    if(queue[0] && queue[0].id === socket.id) {
       /*switch (button) {
         case "ArrowUp":
           pwm.setPulse(0, 2000);
@@ -95,15 +95,6 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-});
-
-const exec = require('child_process').exec;
-exec('sh ./stream-relay/runffmpeg.sh', function (error, stdout, stderr) {
-  if(error) {
-    console.log(error)
-  }
-  console.log(stdout);
-  console.log(stderr);
 });
 
 module.exports = app;
