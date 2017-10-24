@@ -19,16 +19,17 @@ export class ControlsComponent implements OnDestroy, OnInit {
     this.emitPressedInterval = setInterval(this.emitPressed(), 250);
   }
 
-  @HostListener('window:keydown', ['$event'])
+  @HostListener('document:keydown', ['$event'])
   keyDown(event: KeyboardEvent): void {
-    event.stopPropagation();
-    event.preventDefault();
+    if([32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {
+      event.preventDefault();
+    }
     if (this.currPressed === "None") {
       this.currPressed = event.key;
     }
   }
 
-  @HostListener('window:keyup', ['$event'])
+  @HostListener('document:keyup', ['$event'])
   keyUp(event: KeyboardEvent): void {
     if (event.key === this.currPressed) {
       this.currPressed = "None";
