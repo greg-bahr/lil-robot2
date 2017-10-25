@@ -24,7 +24,7 @@ export class AppComponent {
   selector: 'app-name-dialog',
   template: `
   <h2 mat-dialog-title>Please enter your name.</h2>
-  <mat-form-field>
+  <mat-form-field (keyup.enter)="submitName()">
     <input matInput placeholder="Name" [(ngModel)]="name"/>
   </mat-form-field>
   <mat-dialog-actions>
