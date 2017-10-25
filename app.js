@@ -53,6 +53,15 @@ io.on('connection', function (socket) {
     }
   });
 
+  socket.on('newName', function (name) {
+    var index = queue.findIndex(function (obj) {
+      return obj.id === socket.id;
+    });
+    queue[index].name = name;
+
+    io.sockets.emit('sendQueue', queue);
+  });
+
   socket.on('disconnect', function() {
     queue = queue.filter(function (t) {
       return t.id !== socket.id });
