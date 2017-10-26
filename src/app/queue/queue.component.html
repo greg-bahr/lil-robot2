@@ -2,6 +2,8 @@
   <h2>Queue:</h2>
   <h3>Timer: {{ queueService.currentTimer }}s</h3>
   <ol>
-    <li *ngFor="let person of queue">{{ person.name }}</li>
+    <li
+      *ngFor="let person of queue"
+      [style.backgroundColor]="person.id === socket.ioSocket.io.engine.id ? '#ddd' : 'null'">{{ person.name }}</li>
   </ol>
 </div>
