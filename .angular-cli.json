@@ -9,7 +9,7 @@
       "root": "src",
       "outDir": "dist",
       "assets": [
-        "assets",
+        "assets/js",
         "favicon.ico"
       ],
       "index": "index.html",
