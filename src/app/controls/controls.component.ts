@@ -1,5 +1,4 @@
 import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
-import { Socket } from 'ngx-socket-io';
 import {ControlsService} from "./controls.service";
 
 @Component({
@@ -21,7 +20,7 @@ export class ControlsComponent implements OnDestroy, OnInit {
 
   @HostListener('document:keydown', ['$event'])
   keyDown(event: KeyboardEvent): void {
-    if([32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {
+    if ([32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {
       event.preventDefault();
     }
     if (this.currPressed === "None") {

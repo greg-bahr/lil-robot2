@@ -9,6 +9,7 @@ import { PlayerComponent } from './player/player.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatButtonModule, MatDialogModule, MatInputModule} from "@angular/material";
 import {FormsModule} from "@angular/forms";
+import 'hammerjs';
 
 const config: SocketIoConfig = { url: 'http://' + window.location.hostname + ':3001', options: {} };
 
