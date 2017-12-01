@@ -16,6 +16,7 @@ export class AppComponent {
 
     this.dialogRef.afterClosed().subscribe(result => {
       socket.emit('newName', result);
+      this.dialogRef = null;
     });
   }
 }
