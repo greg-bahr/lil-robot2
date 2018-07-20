@@ -12,10 +12,10 @@ export class ControlsComponent implements OnDestroy, OnInit {
   public currPressed = "None";
   private emitPressedInterval: any;
 
-  constructor(private controlsService: ControlsService) {}
+  constructor(public controlsService: ControlsService) {}
 
   ngOnInit() {
-    this.emitPressedInterval = setInterval(this.emitPressed(), 250);
+    this.emitPressedInterval = setInterval(() => this.emitPressed(), 250);
   }
 
   @HostListener('document:keydown', ['$event'])
@@ -47,6 +47,7 @@ export class ControlsComponent implements OnDestroy, OnInit {
   }
 
   emitPressed() {
+    console.log(this.currPressed);
     this.controlsService.emitPressed(this.currPressed);
   }
 

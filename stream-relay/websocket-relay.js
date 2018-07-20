@@ -88,11 +88,3 @@ var streamServer = http.createServer( function(request, response) {
 console.log('Listening for incomming MPEG-TS Stream on http://127.0.0.1:'+STREAM_PORT+'/<secret>');
 console.log('Awaiting WebSocket connections on ws://127.0.0.1:'+WEBSOCKET_PORT+'/');
 
-const exec = require('child_process').exec;
-exec('sh ./runffmpeg.sh', function (error, stdout, stderr) {
-  if(error) {
-    console.log(error)
-  }
-  console.log(stdout);
-  console.log(stderr);
-});

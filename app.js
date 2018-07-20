@@ -8,8 +8,8 @@ var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 var generateName = require('sillyname');
 
-// var makePwm = require('adafruit-pca9685');
-// var pwm = makePwm({ freq: 50, correctionFactor: 1.118 });
+var makePwm = require('adafruit-pca9685');
+var pwm = makePwm({ freq: 50, correctionFactor: 1.118 });
 
 http.listen(3001);
 
@@ -28,7 +28,7 @@ io.on('connection', function (socket) {
 
   socket.on('buttonPressed', function(button) {
     if(queue[0] && queue[0].id === socket.id) {
-      /*switch (button) {
+      switch (button) {
         case "ArrowUp":
           pwm.setPulse(0, 2000);
           pwm.setPulse(1, 1000);
@@ -49,7 +49,7 @@ io.on('connection', function (socket) {
           pwm.setPulse(0, 0);
           pwm.setPulse(1, 0);
           break;
-      }*/
+      }
     }
   });
 
@@ -71,8 +71,8 @@ io.on('connection', function (socket) {
 });
 
 setInterval(function () {
-  /*pwm.setPulse(0, 0);
-  pwm.setPulse(1, 0);*/
+  pwm.setPulse(0, 0);
+  pwm.setPulse(1, 0);
   queue.push(queue.shift());
   timer = 15;
   io.sockets.emit('sendQueue', queue);
